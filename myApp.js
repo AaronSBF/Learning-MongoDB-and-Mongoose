@@ -16,14 +16,22 @@ favoriteFoods: [String]
 
 })
 
-const Model = mongoose.model('Person', personSchema )
+const Person = mongoose.model('Person', personSchema )
 
 
 
-let Person;
+
 
 const createAndSavePerson = (done) => {
-  done(null /*, data*/);
+  let beautifulDenise = new Person({ 
+    name: "Denise", age: 24, favoriteFoods:["pizza", "burger", "fufu", "rice"]
+    });
+    
+    beautifulDenise.save((err, data) =>{  
+    
+      if (err){ console.log("error")};
+      done(null, data);
+    })
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
