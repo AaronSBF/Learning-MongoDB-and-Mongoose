@@ -36,6 +36,8 @@ const createAndSavePerson = (done) => {
     })
 };
 
+
+//Create Many Records with model.create()
 var arrayOfPeople = [
   {name: "Frankie", age: 74, favoriteFoods: ["Del Taco"]},
   {name: "Sol", age: 76, favoriteFoods: ["roast chicken"]},
@@ -49,8 +51,17 @@ if (err){console.log("error")};
 })
 };
 
+
+//Use model.find() to Search Your Database
 const findPeopleByName = (personName, done) => {
-  done(null /*, data*/);
+  
+  Person.find({name: personName}, function(err, data){ 
+  
+    if(err){console.log("error")};
+    done(null, data);
+  })
+  
+  
 };
 
 const findOneByFood = (food, done) => {
