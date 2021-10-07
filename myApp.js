@@ -6,6 +6,19 @@ const mongoose = require('mongoose');
 
 mongoose.connect(process.env.MONGO_URI);
 
+const Schema = mongoose.Schema;
+
+const personSchema = new Schema({ 
+name: {type:String},
+age: Number,
+favoriteFoods: [String]
+
+
+})
+
+const Model = mongoose.model('Person', personSchema )
+
+
 
 let Person;
 
