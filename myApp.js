@@ -1,11 +1,12 @@
 require('dotenv').config();
 
-require('dotenv').config();
+
 
 const mongoose = require('mongoose');
 
 mongoose.connect(process.env.MONGO_URI);
 
+//Created a schema to mark to the mongo DB
 const Schema = mongoose.Schema;
 
 const personSchema = new Schema({ 
@@ -16,12 +17,13 @@ favoriteFoods: [String]
 
 })
 
+//created a model named person for the schema
 const Person = mongoose.model('Person', personSchema )
 
 
 
 
-
+//Create and Save a Record of a Model
 const createAndSavePerson = (done) => {
   let beautifulDenise = new Person({ 
     name: "Denise", age: 24, favoriteFoods:["pizza", "burger", "fufu", "rice"]
@@ -34,8 +36,17 @@ const createAndSavePerson = (done) => {
     })
 };
 
+var arrayOfPeople = [
+  {name: "Frankie", age: 74, favoriteFoods: ["Del Taco"]},
+  {name: "Sol", age: 76, favoriteFoods: ["roast chicken"]},
+  {name: "Robert", age: 78, favoriteFoods: ["wine"]}
+];
+
 const createManyPeople = (arrayOfPeople, done) => {
-  done(null /*, data*/);
+Person.create(arrayOfPeople, (err, data)=> { 
+if (err){console.log("error")};
+  done(null, data);
+})
 };
 
 const findPeopleByName = (personName, done) => {
