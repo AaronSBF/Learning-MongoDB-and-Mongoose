@@ -141,10 +141,16 @@ done(null, removedAll);
   
 };
 
+//Chaining Search Query Helpers to Narrow Search Results: find(),sort(),limit(), select(),exe()
 const queryChain = (done) => {
   const foodToSearch = "burrito";
+  
+  Person.find({favoriteFoods:foodToSearch}).sort({name:1}).limit(2).select({age:0}).exec(function(error, people){ 
+  if(error) return console.log(error);
+  done(null, people);
+  })
 
-  done(null /*, data*/);
+  
 };
 
 /** **Well Done !!**
