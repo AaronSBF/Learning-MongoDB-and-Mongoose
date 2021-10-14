@@ -130,10 +130,15 @@ const removeById = (personId, done) => {
 };
 
 
+//remove all items with a certian criteria with model.remove()
 const removeManyPeople = (done) => {
   const nameToRemove = "Mary";
-
-  done(null /*, data*/);
+  
+Person.remove({name:nameToRemove}, (err,removedAll)=> { 
+if(err)return console.log(err);
+done(null, removedAll);
+})
+  
 };
 
 const queryChain = (done) => {
